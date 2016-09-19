@@ -9,6 +9,7 @@ import { SigninComponent } from "./unprotected/signin.component";
 import { SignupComponent } from "./unprotected/signup.component";
 import { ProtectedComponent } from "./protected/protected.component";
 import { Routing } from "./app.routes";
+import { AuthService } from "./shared/auth.service";
 
 @NgModule({
     declarations: [
@@ -20,6 +21,6 @@ import { Routing } from "./app.routes";
     ],
     imports: [BrowserModule, HttpModule, ReactiveFormsModule, Routing],
     bootstrap: [AppComponent],
-    providers: []
+    providers: [ AuthService ]
 })
 export class AppModule { }
