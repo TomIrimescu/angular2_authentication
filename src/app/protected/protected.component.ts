@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 @Component({
     template: `
-        <h1>Protected - you shouldn't be here if not signed in</h1>
+        <h2>Protected - you shouldn't be here if not signed in</h2>
     `
 })
 export class ProtectedComponent {
