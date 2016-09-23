@@ -1,6 +1,7 @@
 import { User } from "./user.interface";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { Subject, Observable } from "rxjs/Rx";
 
 declare var firebase: any;
 
@@ -27,14 +28,16 @@ export class AuthService {
     this.router.navigate(['/signin'])
   }
 
-  isAuthenticated(){
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
+  isAuthenticated():Observable<boolean>{
+    const subject = new Subject<boolean>();
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user){
+        subject.next(true);
+      } else {
+        subject.next(false);
+      }
+    });
+    return subject.asObservable();
   }
 
 }
